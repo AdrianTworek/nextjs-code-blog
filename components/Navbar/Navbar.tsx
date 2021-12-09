@@ -1,4 +1,4 @@
-import React, { FC, useState, MouseEvent, useContext, useEffect } from 'react'
+import { FC, useState, MouseEvent, useContext, useEffect } from 'react'
 import Link from 'next/link'
 
 import { ThemeContext } from '../../context/ThemeContext'
