@@ -108,18 +108,17 @@ const Navbar: FC = () => {
             }}
           >
             {menuItems.map((link) => (
-              <Button
-                key={link}
-                sx={{
-                  fontSize: '0.9rem',
-                  transitionDuration: '0s',
-                }}
-                color={state === 'dark' ? 'primary' : 'secondary'}
-              >
-                <Link href={`/${link}`} passHref>
+              <Link key={link} href={`/${link}`} passHref>
+                <Button
+                  sx={{
+                    fontSize: '0.9rem',
+                    transitionDuration: '0s',
+                  }}
+                  color={state === 'dark' ? 'primary' : 'secondary'}
+                >
                   {link}
-                </Link>
-              </Button>
+                </Button>
+              </Link>
             ))}
           </Box>
 

@@ -96,16 +96,16 @@ const Hero: FC = () => {
           spacing={2}
         >
           {buttons.map((item) => (
-            <Button
-              key={item.text}
-              variant={state === 'dark' ? 'outlined' : 'contained'}
-              color={item.color}
-              size="large"
-            >
-              <Link href={`/${item.href}`} passHref>
+            <Link key={item.text} href={`/${item.href}`} passHref>
+              <Button
+                key={item.text}
+                variant={state === 'dark' ? 'outlined' : 'contained'}
+                color={item.color}
+                size="large"
+              >
                 {item.text}
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           ))}
         </Stack>
       </Container>
