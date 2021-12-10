@@ -2,6 +2,7 @@ import { FC } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Color } from '../../types/color.type'
+import { motion } from 'framer-motion'
 
 import { useThemeContext } from '../../context/ThemeContext'
 
@@ -12,6 +13,31 @@ type Buttons = {
   href: string
   color: Color
 }[]
+
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.3,
+    },
+  },
+}
+
+const typographyVariant = {
+  hidden: { opacity: 0, x: -100 },
+  show: { opacity: 1, x: 0 },
+}
+
+const imageVariant = {
+  hidden: { opacity: 0, x: 100 },
+  show: { opacity: 1, x: 0 },
+}
+
+const buttonVariant = {
+  hidden: { opacity: 0, y: 25 },
+  show: { opacity: 1, y: 0 },
+}
 
 const Hero: FC = () => {
   const { state, textColor } = useThemeContext()
@@ -35,6 +61,10 @@ const Hero: FC = () => {
         width: '100%',
         marginTop: '4rem',
       }}
+      component={motion.div}
+      variants={container}
+      initial="hidden"
+      animate="show"
     >
       <Container maxWidth="lg" sx={{ display: 'grid', placeItems: 'center' }}>
         <Grid
@@ -44,7 +74,13 @@ const Hero: FC = () => {
           spacing={3}
           maxWidth={768}
         >
-          <Grid item xs={10} sm={6}>
+          <Grid
+            item
+            xs={10}
+            sm={6}
+            component={motion.div}
+            variants={typographyVariant}
+          >
             <Typography
               sx={{
                 fontSize: 'clamp(2.5rem, 4vw, 2.8rem)',
@@ -66,7 +102,14 @@ const Hero: FC = () => {
             </Typography>
           </Grid>
 
-          <Grid item xs={10} sm={6} maxWidth={350}>
+          <Grid
+            item
+            xs={10}
+            sm={6}
+            maxWidth={350}
+            component={motion.div}
+            variants={imageVariant}
+          >
             <Image
               src="/blogging.svg"
               width={350}
@@ -89,6 +132,8 @@ const Hero: FC = () => {
                 variant={state === 'dark' ? 'outlined' : 'contained'}
                 color={item.color}
                 size="large"
+                component={motion.button}
+                variants={buttonVariant}
               >
                 {item.text}
               </Button>
