@@ -1,20 +1,11 @@
 import { FC, useContext } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { Color } from '../../types/color.type'
 
-import { ThemeContext } from '../../context/ThemeContext'
+import { useThemeContext } from '../../context/ThemeContext'
 
 import { Box, Container, Typography, Button, Stack, Grid } from '@mui/material'
-
-type Color =
-  | 'inherit'
-  | 'primary'
-  | 'secondary'
-  | 'success'
-  | 'error'
-  | 'info'
-  | 'warning'
-  | undefined
 
 type Buttons = {
   text: string
@@ -23,7 +14,7 @@ type Buttons = {
 }[]
 
 const Hero: FC = () => {
-  const { state } = useContext(ThemeContext)
+  const { state, textColor } = useThemeContext()
 
   const buttons: Buttons = [
     {
@@ -69,11 +60,7 @@ const Hero: FC = () => {
               align="center"
             >
               Stay up to date anywhere you like
-              <Typography
-                variant="h3"
-                color={state === 'dark' ? 'primary' : 'secondary'}
-                component="span"
-              >
+              <Typography variant="h3" color={textColor} component="span">
                 .
               </Typography>
             </Typography>

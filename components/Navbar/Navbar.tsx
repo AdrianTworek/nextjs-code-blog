@@ -1,7 +1,7 @@
 import { FC, useState, MouseEvent, useContext, useEffect } from 'react'
 import Link from 'next/link'
 
-import { ThemeContext } from '../../context/ThemeContext'
+import { useThemeContext } from '../../context/ThemeContext'
 
 import { getTheme } from '../../utils/theme'
 
@@ -24,7 +24,7 @@ import ComputerIcon from '@mui/icons-material/Computer'
 import MenuIcon from '@mui/icons-material/Menu'
 
 const Navbar: FC = () => {
-  const { state, dispatch } = useContext(ThemeContext)
+  const { state, dispatch, textColor } = useThemeContext()
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null)
   const [anchorMobileMenu, setAnchorMobileMenu] = useState<null | HTMLElement>(
     null
@@ -114,7 +114,7 @@ const Navbar: FC = () => {
                     fontSize: '0.9rem',
                     transitionDuration: '0s',
                   }}
-                  color={state === 'dark' ? 'primary' : 'secondary'}
+                  color={textColor}
                 >
                   {link}
                 </Button>
@@ -143,14 +143,8 @@ const Navbar: FC = () => {
               '@media screen and (min-width: 37.5em)': { display: 'none' },
             }}
           >
-            <IconButton
-              color={state === 'dark' ? 'primary' : 'secondary'}
-              onClick={handleOpenMobileMenu}
-            >
-              <MenuIcon
-                fontSize="large"
-                color={state === 'dark' ? 'primary' : 'secondary'}
-              />
+            <IconButton color={textColor} onClick={handleOpenMobileMenu}>
+              <MenuIcon fontSize="large" color={textColor} />
             </IconButton>
           </Box>
 

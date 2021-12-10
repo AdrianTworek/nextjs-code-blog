@@ -1,4 +1,12 @@
-import { createContext, useMemo, useReducer, ReactNode, Dispatch } from 'react'
+import {
+  createContext,
+  useMemo,
+  useReducer,
+  ReactNode,
+  Dispatch,
+  useContext,
+} from 'react'
+import { Color } from '../types/color.type'
 
 import { getThemeOptions, setTheme } from '../utils/theme'
 
@@ -31,7 +39,7 @@ const ThemeContext = createContext<{
   dispatch: Dispatch<Action>
 }>({ state: initialState, dispatch: () => {} })
 
-const ThemeContextProvider = ({ children }: ThemeProviderProps) => {
+export const ThemeContextProvider = ({ children }: ThemeProviderProps) => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   const theme = useMemo(() => createTheme(getThemeOptions(state)), [state])
@@ -43,4 +51,9 @@ const ThemeContextProvider = ({ children }: ThemeProviderProps) => {
   )
 }
 
-export { ThemeContext, ThemeContextProvider }
+export const useThemeContext = () => {
+  const { state, dispatch } = useContext(ThemeContext)
+  const textColor: Color = state === 'dark' ? 'primary' : 'secondary'
+
+  return { state, dispatch, textColor }
+}
