@@ -16,7 +16,7 @@ type AppState = typeof initialState
 type Action = { type: 'TOGGLE_DARK_MODE' } | { type: 'TOGGLE_LIGHT_MODE' }
 
 interface ThemeProviderProps {
-  children: ReactNode[]
+  children: ReactNode | ReactNode[]
 }
 
 const initialState: PaletteMode = 'dark'
