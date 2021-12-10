@@ -14,6 +14,7 @@
     "@mui/icons-material": "^5.2.0",
     "@mui/material": "^5.2.2",
     "@mui/styles": "^5.2.2",
+    "framer-motion": "^5.4.5",
     "gray-matter": "^4.0.3",
     "highlight.js": "^11.3.1",
     "marked": "^4.0.6",
