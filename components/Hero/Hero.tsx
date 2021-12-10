@@ -1,4 +1,4 @@
-import { FC, useContext } from 'react'
+import { FC } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Color } from '../../types/color.type'
