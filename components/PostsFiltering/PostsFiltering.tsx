@@ -7,27 +7,22 @@ import { Button, Chip, Paper, Stack, Box } from '@mui/material'
 import { usePostsContext } from '../../context/PostsContext'
 
 const chipWidth: number = 80
-let postsLoaded: boolean = false
 
-const PostsFiltering: FC = () => {
+interface Props {
+  posts: Post[]
+}
+
+const PostsFiltering: FC<Props> = ({ posts: initialPosts }) => {
   const { state: posts, dispatch } = usePostsContext()
-
-  // Store all posts to avoid creating another context for filtering
-  const [postsState, setPostsState] = useState<Post[]>([])
-
   const [isAll, setIsAll] = useState<boolean>(true)
   const [showFiltering, setShowFiltering] = useState<boolean>(false)
   const [filteredTags, setFilteredTags] = useState<Tag[]>([])
 
   const chipStyles = { minWidth: chipWidth, cursor: 'pointer', fontWeight: 500 }
 
-  // Save posts from context API to local state only once
   useEffect(() => {
-    if (posts.length > 0 && !postsLoaded) {
-      setPostsState(posts)
-      postsLoaded = true
-    }
-  }, [posts])
+    dispatch({ type: 'SET_POSTS', payload: initialPosts })
+  }, [])
 
   useEffect(() => {
     if (!filteredTags.length) {
@@ -68,13 +63,13 @@ const PostsFiltering: FC = () => {
   const filterPosts = () => {
     // Reset posts if 'all' is selected
     if (!filteredTags.length) {
-      dispatch({ type: 'SET_POSTS', payload: postsState })
+      dispatch({ type: 'SET_POSTS', payload: initialPosts })
       return
     }
 
     const filteredPosts: Post[] = []
 
-    postsState.map((post: Post) => {
+    initialPosts.map((post: Post) => {
       if (post.metaData.tags.some((tag) => filteredTags.includes(tag))) {
         filteredPosts.push(post)
       }

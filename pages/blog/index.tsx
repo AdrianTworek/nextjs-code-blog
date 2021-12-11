@@ -22,7 +22,7 @@ const Blog: NextPage = ({
 
   return (
     <>
-      <PostsFiltering />
+      <PostsFiltering posts={posts} />
       <PostsContainer />
     </>
   )
