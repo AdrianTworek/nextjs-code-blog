@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
 import fs from 'fs'
 import path from 'path'
@@ -5,13 +6,27 @@ import matter from 'gray-matter'
 
 import { Post } from '../../types/post.interface'
 
+import { usePostsContext } from '../../context/PostsContext'
+
 import PostsContainer from '../../components/Posts/PostsContainer'
+import PostsFiltering from '../../components/PostsFiltering/PostsFiltering'
 
 const Blog: NextPage = ({
   posts,
-}: InferGetStaticPropsType<typeof getStaticProps>) => (
-  <PostsContainer posts={posts} />
-)
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const { dispatch } = usePostsContext()
+
+  useEffect(() => {
+    dispatch({ type: 'SET_POSTS', payload: posts })
+  }, [])
+
+  return (
+    <>
+      <PostsFiltering />
+      <PostsContainer />
+    </>
+  )
+}
 
 export default Blog
 

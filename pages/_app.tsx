@@ -6,14 +6,17 @@ import '../styles/globals.css'
 import { CssBaseline } from '@mui/material'
 
 import { Layout } from '../components'
+import { PostsContextProvider } from '../context/PostsContext'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThemeContextProvider>
-      <Layout>
-        <CssBaseline />
-        <Component {...pageProps} />
-      </Layout>
+      <PostsContextProvider>
+        <Layout>
+          <CssBaseline />
+          <Component {...pageProps} />
+        </Layout>
+      </PostsContextProvider>
     </ThemeContextProvider>
   )
 }

@@ -2,15 +2,15 @@ import { FC } from 'react'
 
 import { Post } from '../../types/post.interface'
 
+import { usePostsContext } from '../../context/PostsContext'
+
 import { Grid } from '@mui/material'
 
 import PostCard from './PostCard'
 
-interface Props {
-  posts: Post[]
-}
+const PostsContainer: FC = () => {
+  const { state: posts } = usePostsContext()
 
-const PostsContainer: FC<Props> = ({ posts }) => {
   return (
     <Grid
       container
