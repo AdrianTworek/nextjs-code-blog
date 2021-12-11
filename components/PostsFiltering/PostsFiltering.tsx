@@ -1,24 +1,61 @@
 import { FC, useState, useEffect } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 
 import { Tag, tagFilters } from '../../types/tag.type'
 import { Post } from '../../types/post.interface'
 
-import { Button, Chip, Paper, Stack, Box } from '@mui/material'
 import { usePostsContext } from '../../context/PostsContext'
 
-const chipWidth: number = 80
+import { Button, Chip, Paper, Stack, Box } from '@mui/material'
+
+const CHIP_WIDTH: number = 80
+
+const filterBtnVariant = {
+  hidden: {
+    opacity: 0,
+    y: -30,
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { type: 'spring', stiffness: 300 },
+  },
+  hover: {
+    scale: 1.05,
+  },
+  tap: {
+    scale: 1,
+  },
+}
+
+const stackVariant = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { delay: 0.25, staggerChildren: 0.07 },
+  },
+}
+
+const chipVariant = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1 },
+}
 
 interface Props {
   posts: Post[]
 }
 
 const PostsFiltering: FC<Props> = ({ posts: initialPosts }) => {
-  const { state: posts, dispatch } = usePostsContext()
+  const { dispatch } = usePostsContext()
   const [isAll, setIsAll] = useState<boolean>(true)
   const [showFiltering, setShowFiltering] = useState<boolean>(false)
   const [filteredTags, setFilteredTags] = useState<Tag[]>([])
 
-  const chipStyles = { minWidth: chipWidth, cursor: 'pointer', fontWeight: 500 }
+  const chipStyles = {
+    minWidth: CHIP_WIDTH,
+    cursor: 'pointer',
+    fontWeight: 500,
+  }
 
   useEffect(() => {
     dispatch({ type: 'SET_POSTS', payload: initialPosts })
@@ -80,7 +117,15 @@ const PostsFiltering: FC<Props> = ({ posts: initialPosts }) => {
 
   return (
     <>
-      <Box sx={{ display: 'grid', placeItems: 'center', marginTop: '2rem' }}>
+      <Box
+        sx={{ display: 'grid', placeItems: 'center', marginTop: '2rem' }}
+        component={motion.div}
+        variants={filterBtnVariant}
+        initial="hidden"
+        animate="show"
+        whileHover="hover"
+        whileTap="tap"
+      >
         <Button
           variant="contained"
           color={showFiltering ? 'info' : 'secondary'}
@@ -90,45 +135,61 @@ const PostsFiltering: FC<Props> = ({ posts: initialPosts }) => {
         </Button>
       </Box>
 
-      {showFiltering && (
-        <Paper
-          sx={{
-            display: 'grid',
-            placeItems: 'center',
-            minHeight: 55,
-            marginTop: '2rem',
-            padding: '0.5rem 2rem',
-          }}
-        >
-          <Stack
+      <AnimatePresence exitBeforeEnter>
+        {showFiltering && (
+          <Paper
             sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              flexWrap: 'wrap',
-              gap: '0.5rem',
+              display: 'grid',
+              placeItems: 'center',
+              minHeight: 55,
+              marginTop: '2rem',
+              padding: '0.5rem 2rem',
             }}
-            direction="row"
+            component={motion.div}
+            variants={filterBtnVariant}
+            initial="hidden"
+            animate="show"
+            transition={{ duration: 0.35 }}
+            exit={{ opacity: 0, x: [-20, 10, -5, 6] }}
           >
-            <Chip
-              sx={chipStyles}
-              label="all"
-              color={isAll ? 'primary' : 'default'}
-              onClick={handleClickAllTag}
-            />
-
-            {tagFilters.map((tag: Tag) => (
+            <Stack
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexWrap: 'wrap',
+                gap: '0.5rem',
+              }}
+              direction="row"
+              component={motion.div}
+              variants={stackVariant}
+              initial="hidden"
+              animate="show"
+            >
               <Chip
                 sx={chipStyles}
-                key={tag}
-                label={tag}
-                color={filteredTags.includes(tag) ? 'secondary' : 'default'}
-                onClick={() => handleClickTag(tag)}
+                label="all"
+                color={isAll ? 'primary' : 'default'}
+                onClick={handleClickAllTag}
+                component={motion.span}
+                variants={chipVariant}
               />
-            ))}
-          </Stack>
-        </Paper>
-      )}
+
+              {tagFilters.map((tag: Tag) => (
+                <Chip
+                  sx={chipStyles}
+                  key={tag}
+                  label={tag}
+                  color={filteredTags.includes(tag) ? 'secondary' : 'default'}
+                  onClick={() => handleClickTag(tag)}
+                  component={motion.span}
+                  variants={chipVariant}
+                />
+              ))}
+            </Stack>
+          </Paper>
+        )}
+      </AnimatePresence>
     </>
   )
 }
