@@ -3,7 +3,11 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'Roboto', Helvetica, sans-serif;
+}
+
+body {
   overflow-x: hidden;
+  min-width: 320px;
 }
 
 *,

@@ -71,7 +71,7 @@ const Navbar: FC = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        width: '100vw',
+        width: '100%',
         height: 70,
         background: theme.palette.background.paper,
         color: theme.palette.text.primary,
