@@ -69,6 +69,11 @@ const PostsFiltering: FC<Props> = ({ posts: initialPosts }) => {
     }
 
     filterPosts()
+
+    // Reset posts when unmounting
+    return () => {
+      dispatch({ type: 'SET_POSTS', payload: initialPosts })
+    }
   }, [filteredTags])
 
   const resetFilters = () => {
