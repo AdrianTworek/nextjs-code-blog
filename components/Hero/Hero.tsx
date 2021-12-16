@@ -60,6 +60,7 @@ const Hero: FC = () => {
       sx={{
         width: '100%',
         marginTop: '4rem',
+        overflow: 'hidden',
       }}
       component={motion.div}
       variants={container}

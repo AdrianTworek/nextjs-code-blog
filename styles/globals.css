@@ -5,15 +5,17 @@ body {
   font-family: 'Roboto', Helvetica, sans-serif;
 }
 
-body {
-  overflow-x: hidden;
-  min-width: 320px;
-}
-
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+  min-width: 320px;
+  min-height: 100vh;
+  padding-bottom: 2rem;
 }
 
 a {
