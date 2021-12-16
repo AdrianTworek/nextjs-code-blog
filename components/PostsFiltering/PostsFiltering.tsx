@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { Tag, tagFilters } from '../../types/tag.type'
 import { Post } from '../../types/post.interface'
 
-import { usePostsContext } from '../../context/PostsContext'
+import { usePostsContext } from '../../context'
 
 import { Button, Chip, Paper, Stack, Box } from '@mui/material'
 

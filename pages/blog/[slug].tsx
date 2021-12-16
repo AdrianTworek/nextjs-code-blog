@@ -13,7 +13,7 @@ import { MDXRemote } from 'next-mdx-remote'
 
 import { Box } from '@mui/material'
 
-import BlogPostHeader from '../../components/Posts/BlogPostHeader'
+import { BlogPostHeader } from '../../components'
 
 const components = {
   BlogPostHeader,

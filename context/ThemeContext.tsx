@@ -51,9 +51,11 @@ export const ThemeContextProvider = ({ children }: ThemeProviderProps) => {
   )
 }
 
-export const useThemeContext = () => {
+const useThemeContext = () => {
   const { state, dispatch } = useContext(ThemeContext)
   const textColor: Color = state === 'dark' ? 'primary' : 'secondary'
 
   return { state, dispatch, textColor }
 }
+
+export default useThemeContext

@@ -2,15 +2,16 @@ import { useEffect } from 'react'
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
 import fs from 'fs'
 import path from 'path'
+
 import matter from 'gray-matter'
 
 import { Post } from '../../types/post.interface'
 
-import { usePostsContext } from '../../context/PostsContext'
+import { usePostsContext } from '../../context'
 
-import PostsContainer from '../../components/Posts/PostsContainer'
-import PostsFiltering from '../../components/PostsFiltering/PostsFiltering'
 import { Box } from '@mui/material'
+
+import { PostsContainer, PostsFiltering } from '../../components'
 
 const Blog: NextPage = ({
   posts,

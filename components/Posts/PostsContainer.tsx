@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 
 import { Post } from '../../types/post.interface'
 
-import { usePostsContext } from '../../context/PostsContext'
+import { usePostsContext } from '../../context'
 
 import { Grid } from '@mui/material'
 

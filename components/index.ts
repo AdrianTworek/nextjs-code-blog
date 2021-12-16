@@ -1,3 +1,7 @@
 export { default as Navbar } from './Navbar/Navbar'
 export { default as Hero } from './Hero/Hero'
 export { default as Layout } from './Layout/Layout'
+export { default as PostCard } from './Posts/PostCard'
+export { default as PostsContainer } from './Posts/PostsContainer'
+export { default as BlogPostHeader } from './Posts/BlogPostHeader'
+export { default as PostsFiltering } from './PostsFiltering/PostsFiltering'

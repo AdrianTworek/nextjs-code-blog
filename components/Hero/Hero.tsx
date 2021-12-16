@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { Color } from '../../types/color.type'
 import { motion } from 'framer-motion'
 
-import { useThemeContext } from '../../context/ThemeContext'
+import { useThemeContext } from '../../context'
 
 import { Box, Container, Typography, Button, Stack, Grid } from '@mui/material'
 

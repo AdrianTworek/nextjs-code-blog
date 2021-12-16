@@ -41,4 +41,6 @@ export const PostsContextProvider = ({ children }: PostsContextProps) => {
   )
 }
 
-export const usePostsContext = () => useContext(PostsContext)
+const usePostsContext = () => useContext(PostsContext)
+
+export default usePostsContext

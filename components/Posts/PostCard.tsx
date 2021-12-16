@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 
 import { Post } from '../../types/post.interface'
 
-import { useThemeContext } from '../../context/ThemeContext'
+import { useThemeContext } from '../../context'
 
 import {
   Button,

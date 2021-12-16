@@ -4,8 +4,7 @@ import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'
 import { Post } from '../../types/post.interface'
 
-import { useThemeContext } from '../../context/ThemeContext'
-import { usePostsContext } from '../../context/PostsContext'
+import { useThemeContext, usePostsContext } from '../../context'
 
 import { getTheme } from '../../utils/theme'
 
