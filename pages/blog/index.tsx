@@ -10,6 +10,7 @@ import { usePostsContext } from '../../context/PostsContext'
 
 import PostsContainer from '../../components/Posts/PostsContainer'
 import PostsFiltering from '../../components/PostsFiltering/PostsFiltering'
+import { Box } from '@mui/material'
 
 const Blog: NextPage = ({
   posts,
@@ -21,10 +22,10 @@ const Blog: NextPage = ({
   }, [])
 
   return (
-    <>
+    <Box sx={{ overflow: 'hidden' }}>
       <PostsFiltering posts={posts} />
       <PostsContainer />
-    </>
+    </Box>
   )
 }
 
