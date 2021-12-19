@@ -120,7 +120,16 @@ const TOC: FC = () => {
         {sections.map((section: Section, idx: number) => (
           <TimelineItem
             key={idx}
-            onClick={() => toggleSection(section.boundingTop)}
+            onClick={() => {
+              // Do nothing when section is already active
+              if (
+                Math.floor(section.boundingTop - MARGIN_TOP) ===
+                Math.floor(offsetY)
+              ) {
+                return
+              }
+              toggleSection(section.boundingTop)
+            }}
           >
             {/* Add 'Pipe' separator to each item except the last one */}
             {idx !== sections.length - 1 ? (
