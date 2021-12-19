@@ -122,7 +122,7 @@ const Hero: FC = () => {
             variants={imageVariant}
           >
             <Image
-              src="/blogging.svg"
+              src="/images/blogging.svg"
               width={350}
               height={220}
               alt="People discussing blog"
