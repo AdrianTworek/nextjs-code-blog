@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
+import { NextSeo } from 'next-seo'
 import fs from 'fs'
 import path from 'path'
 
@@ -23,10 +24,16 @@ const Blog: NextPage = ({
   }, [])
 
   return (
-    <Box sx={{ overflow: 'hidden' }}>
-      <PostsFiltering posts={posts} />
-      <PostsContainer />
-    </Box>
+    <>
+      <NextSeo
+        title="Code Blog | Blog posts"
+        description="Page with all posts on Code Blog"
+      />
+      <Box sx={{ overflow: 'hidden' }}>
+        <PostsFiltering posts={posts} />
+        <PostsContainer />
+      </Box>
+    </>
   )
 }
 

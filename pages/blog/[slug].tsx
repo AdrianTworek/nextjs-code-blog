@@ -5,6 +5,7 @@ import {
   InferGetStaticPropsType,
   NextPage,
 } from 'next'
+import { NextSeo } from 'next-seo'
 import fs from 'fs'
 import path from 'path'
 
@@ -27,6 +28,7 @@ const components = {
 }
 
 const PostPage: NextPage = ({
+  metaData: { title },
   source,
 }: InferGetStaticPropsType<GetStaticProps>) => {
   useEffect(() => {
@@ -34,9 +36,15 @@ const PostPage: NextPage = ({
   })
 
   return (
-    <Box sx={{ maxWidth: 800, margin: '2rem auto 0', padding: '2rem' }}>
-      <MDXRemote {...source} components={components} />
-    </Box>
+    <>
+      <NextSeo
+        title={`Code Blog | ${title}`}
+        description={`Detail page of ${title} post`}
+      />
+      <Box sx={{ maxWidth: 800, margin: '2rem auto 0', padding: '2rem' }}>
+        <MDXRemote {...source} components={components} />
+      </Box>
+    </>
   )
 }
 
@@ -69,6 +77,6 @@ export const getStaticProps: GetStaticProps<Params> = async ({
   const source = await serialize(content, { scope: metaData })
 
   return {
-    props: { source },
+    props: { metaData, source },
   }
 }
