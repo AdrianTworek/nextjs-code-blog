@@ -1,0 +1,165 @@
+---
+title: 'TypeScript - a superset of JavaScript'
+dateString: 'December 17, 2021'
+imageUrl: '/posts/typescript/typescript.svg'
+excerpt: 'Learning TypeScript will save you a lot of time during development'
+tags: ['typescript', 'javascript']
+---
+
+<BlogPostHeader
+  title={title}
+  imageUrl={imageUrl}
+  width={400}
+  height={400}
+  dateString={dateString}
+/>
+
+## Topics
+
+- TypeScript - what is it?
+- How you can speed up your development process
+- Advanced features
+- Conclusion
+
+<TOC />
+
+<TOCItem topic="TypeScript - what is it?">
+  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit a quae unde
+  consectetur alias, corrupti incidunt cupiditate, quidem, ipsa soluta
+  recusandae reiciendis eligendi omnis quia nesciunt dolorum. Ullam voluptatum
+  blanditiis libero placeat at officia temporibus quam odio enim voluptatibus
+  eum, vel nihil voluptatem illo earum ea, eaque consequuntur rerum ut molestias
+  error tenetur commodi. Veritatis reprehenderit veniam dolores quo porro libero
+  corrupti minima explicabo fugit, totam, aliquid quae laboriosam, dicta autem?
+  Laborum, est vero? Sint enim aut ad veniam, maxime quis molestias nulla
+  tenetur at dolore quo. Iure accusantium quidem magni nostrum est natus odit,
+  provident ut exercitationem nemo? Odit dolores dolore qui, consequatur
+  aperiam, assumenda fugiat magnam ex impedit iste, corrupti est eos
+  exercitationem nam doloremque aliquam. Voluptatum tempora deleniti est iusto.
+  Possimus libero repellat repudiandae modi hic odio alias minima eligendi
+  molestias, nam ad reiciendis ex sequi, iste praesentium nisi vero optio
+  maiores itaque, earum sit. Sed perferendis quam nisi sequi quia, consequuntur
+  qui ad eaque enim omnis dolorem autem nihil blanditiis doloribus sit
+  doloremque praesentium fugit voluptatibus obcaecati provident aliquam
+  laudantium harum quas. Delectus iusto earum, tempora tempore voluptatum non
+  blanditiis quas? Id autem amet qui inventore corrupti repellendus velit,
+  laudantium accusantium? Omnis esse atque dolorem quo.
+</TOCItem>
+
+```typescript
+const name: string = 'Thomas'
+const age: number = 31
+```
+
+<TOCItem topic="How you can speed up your development process">
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis sapiente
+  molestiae alias dicta cumque sit laboriosam fuga repellat dolore! Ipsam a quia
+  soluta illo, neque, quaerat commodi saepe, magnam praesentium beatae provident
+  fuga. Assumenda maiores doloribus mollitia dicta alias atque aliquid ut ipsam
+  perspiciatis ullam tenetur, id voluptatum, excepturi possimus nesciunt
+  provident dignissimos ipsum nostrum! Ipsa, exercitationem quo quisquam atque
+  blanditiis eos quasi ea, veritatis aliquam dolorum in corrupti modi illum
+  enim! Consequatur laboriosam, ipsam dolorem animi nam sit, veritatis quae
+  delectus, maxime quo sed! Tempore architecto reprehenderit beatae quod
+  obcaecati mollitia! Hic, beatae. Earum vel delectus, corporis repellendus quod
+  dolorum qui commodi sequi voluptatum fugiat magni debitis enim eveniet
+  necessitatibus est, perspiciatis repudiandae harum accusantium sunt! Rerum
+  incidunt magnam saepe vel natus quia voluptas molestiae! Recusandae optio
+  blanditiis repudiandae eius, atque ab qui laboriosam quo cum eum officia nam?
+  Eius qui ipsum optio pariatur ipsam harum quasi quibusdam quam necessitatibus
+  odio, dolor culpa suscipit dolore incidunt enim consectetur excepturi,
+  eligendi quae aliquid quo doloribus nihil amet. Fugiat nisi natus error
+  nostrum impedit cum pariatur architecto delectus modi! Possimus alias
+  consectetur illo neque perferendis quam dolor, sit, voluptates accusantium
+  velit dolore cupiditate ipsam itaque veniam expedita ex illum perspiciatis
+  explicabo facere nobis eum, qui animi. Dolore eum ipsum, ducimus aliquam vitae
+  veniam laudantium. Quo ad temporibus beatae maxime error! Iusto, laborum
+  temporibus. Vero cupiditate labore fugiat quam qui id magni culpa, eum eius,
+  architecto quo! Eligendi magnam dignissimos veritatis officia deleniti
+  reprehenderit voluptatibus optio nesciunt animi eveniet reiciendis expedita
+  iure aliquid quidem quaerat obcaecati dicta voluptatum tempora sapiente at,
+  doloremque voluptates voluptas? Modi, magni inventore? Tempore soluta
+  blanditiis, sit veniam cumque beatae quaerat asperiores dolorum vero, atque,
+  ipsa recusandae? Autem nemo ducimus aliquid iure, eligendi eaque non rem odit,
+  veniam corrupti iusto excepturi dignissimos consectetur harum ullam iste unde
+  repellat.
+</TOCItem>
+
+```typescript
+import { FC } from 'react'
+
+interface Props {
+  firstName: string
+  lastName: string
+  age: number
+  hobbies: string[]
+}
+
+const SomeCoponent: FC<Props> = ({ firstName, lastName, age, hobbies }) => {
+  return (
+    <div>
+      <h4>
+        Full name: {firstName} {lastName}
+      </h4>
+      <h5>Age: {age}</h5>
+      <h6>
+        Hobbies:
+        {hobbies.map((hobby: string) => (
+          <span>{hobby}</span>
+        ))}
+      </h6>
+    </div>
+  )
+}
+
+export default SomeComponent
+```
+
+<TOCItem topic="Advanced features">
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis sapiente
+  molestiae alias dicta cumque sit laboriosam fuga repellat dolore! Ipsam a quia
+  soluta illo, neque, quaerat commodi saepe, magnam praesentium beatae provident
+  fuga. Assumenda maiores doloribus mollitia dicta alias atque aliquid ut ipsam
+  perspiciatis ullam tenetur, id voluptatum, excepturi possimus nesciunt
+  provident dignissimos ipsum nostrum! Ipsa, exercitationem quo quisquam atque
+  blanditiis eos quasi ea, veritatis aliquam dolorum in corrupti modi illum
+  enim! Consequatur laboriosam, ipsam dolorem animi nam sit, veritatis quae
+  delectus, maxime quo sed! Tempore architecto reprehenderit beatae quod
+  obcaecati mollitia! Hic, beatae. Earum vel delectus, corporis repellendus quod
+  dolorum qui commodi sequi voluptatum fugiat magni debitis enim eveniet
+  necessitatibus est, perspiciatis repudiandae harum accusantium sunt! Rerum
+  incidunt magnam saepe vel natus quia voluptas molestiae! Recusandae optio
+  blanditiis repudiandae eius, atque ab qui laboriosam quo cum eum officia nam?
+  Eius qui ipsum optio pariatur ipsam harum quasi quibusdam quam necessitatibus
+  odio, dolor culpa suscipit dolore incidunt enim consectetur excepturi,
+  eligendi quae aliquid quo doloribus nihil amet. Fugiat nisi natus error
+  nostrum impedit cum pariatur architecto delectus modi! Possimus alias
+  consectetur illo neque perferendis quam dolor, sit, voluptates accusantium
+  velit dolore cupiditate ipsam itaque veniam expedita ex illum perspiciatis
+  explicabo facere nobis eum, qui animi. Dolore eum ipsum, ducimus aliquam vitae
+  veniam laudantium. Quo ad temporibus beatae maxime error! Iusto, laborum
+  temporibus. Vero cupiditate labore fugiat quam qui id magni culpa, eum eius,
+  architecto quo! Eligendi magnam dignissimos veritatis officia deleniti
+  reprehenderit voluptatibus optio nesciunt animi eveniet reiciendis expedita
+  iure aliquid quidem quaerat obcaecati dicta voluptatum tempora sapiente at,
+  doloremque voluptates voluptas? Modi, magni inventore? Tempore soluta
+  blanditiis, sit veniam cumque beatae quaerat asperiores dolorum vero, atque,
+  ipsa recusandae? Autem nemo ducimus aliquid iure, eligendi eaque non rem odit,
+  veniam corrupti iusto excepturi dignissimos consectetur harum ullam iste unde
+  repellat.
+</TOCItem>
+
+<TOCItem topic="Conclusion">
+  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore fuga
+  voluptatem voluptate eius earum, culpa eaque perspiciatis. Repellendus illum
+  quisquam tempore ex, fuga natus accusamus hic omnis nobis odio, quasi qui
+  placeat unde et animi alias velit! Consequuntur minus vero quo ducimus, quis
+  earum saepe laboriosam odit at, deserunt voluptates! Rerum, nihil nulla optio
+  at ratione in eius incidunt iusto ex aperiam, ut minima hic porro sint
+  quaerat! Laudantium ullam repellendus enim dolores. Distinctio ea saepe
+  recusandae modi dicta minus placeat officia non nemo assumenda. Eveniet, nulla
+  quod? Veniam omnis a cum at vel aut possimus amet, esse tempore deleniti iure
+  dolore quaerat quia inventore quisquam eos dolores eveniet eaque praesentium
+  culpa consectetur ut quod necessitatibus voluptate. Eum tenetur quasi,
+  laboriosam in a illum, quia quaerat, quas odio fugiat asperiores?
+</TOCItem>
