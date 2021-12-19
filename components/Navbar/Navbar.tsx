@@ -2,6 +2,7 @@ import { FC, useState, MouseEvent, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'
+
 import { Post } from '../../types/post.interface'
 
 import { useThemeContext, usePostsContext } from '../../context'
@@ -26,6 +27,7 @@ import {
   FormControl,
   InputAdornment,
   Grid,
+  useMediaQuery,
 } from '@mui/material'
 
 import SearchIcon from '@mui/icons-material/Search'
@@ -53,6 +55,9 @@ const Navbar: FC = () => {
   const theme = useTheme()
   const menuItems = ['learn', 'blog']
 
+  const matches_600_up = useMediaQuery(theme.breakpoints.up('sm'))
+  const matches_tablet = useMediaQuery('(min-width: 48em)')
+
   useEffect(() => {
     const theme = getTheme()
 
@@ -76,6 +81,14 @@ const Navbar: FC = () => {
   useEffect(() => {
     resetFilteredPosts()
   }, [router])
+
+  // Close mobile menu if it's open (during resizing)
+  useEffect(() => {
+    if (matches_600_up) {
+      handleCloseUserMenu()
+      handleCloseMobileMenu()
+    }
+  }, [matches_600_up])
 
   const handleOpenMobileMenu = (event: MouseEvent<HTMLElement>) => {
     setAnchorMobileMenu(event.currentTarget)
@@ -133,11 +146,9 @@ const Navbar: FC = () => {
                   alignItems: 'center',
                   gap: '0.75rem',
                   fontWeight: 700,
-                  fontSize: '1.2rem',
+                  fontSize: matches_600_up ? '1.6rem' : '1.2rem',
                   cursor: 'pointer',
-                  '@media screen and (min-width: 37.5em)': {
-                    fontSize: '1.6rem',
-                  },
+                  overflow: 'visible',
                 }}
                 variant="h6"
                 noWrap
@@ -176,13 +187,9 @@ const Navbar: FC = () => {
             {posts.length > 0 && router.pathname !== '/blog' && (
               <Box
                 sx={{
-                  width: 85,
+                  width: matches_tablet ? 200 : 120,
                   marginLeft: '1rem',
-                  '@media screen and (min-width: 23.4375em)': { width: 120 },
-                  '@media screen and (min-width: 37.5em)': {
-                    marginRight: '1.5rem',
-                  },
-                  '@media screen and (min-width: 48em)': { width: 200 },
+                  marginRight: matches_600_up ? '1.5rem' : 0,
                 }}
                 component={motion.div}
                 initial={{ x: -15, scale: 1, opacity: 0 }}
@@ -214,9 +221,8 @@ const Navbar: FC = () => {
 
             <Box
               sx={{
-                display: 'none',
+                display: matches_600_up ? 'flex' : 'none',
                 marginLeft: 'auto',
-                '@media screen and (min-width: 37.5em)': { display: 'block' },
               }}
             >
               <Switch
@@ -228,9 +234,10 @@ const Navbar: FC = () => {
 
             <Box
               sx={{
-                display: 'flex',
+                width: matches_600_up ? '0px' : 'min-content',
+                visibility: matches_600_up ? 'hidden' : 'visible',
                 marginLeft: 'auto',
-                '@media screen and (min-width: 37.5em)': { display: 'none' },
+                overflow: 'hidden',
               }}
             >
               <IconButton color={textColor} onClick={handleOpenMobileMenu}>
@@ -240,7 +247,9 @@ const Navbar: FC = () => {
 
             <Box sx={{ flexGrow: 0 }}>
               <Menu
-                sx={{ mt: '45px' }}
+                sx={{
+                  mt: '50px',
+                }}
                 id="menu-appbar"
                 anchorEl={anchorMobileMenu}
                 anchorOrigin={{

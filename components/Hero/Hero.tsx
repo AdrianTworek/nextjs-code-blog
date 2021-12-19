@@ -1,12 +1,22 @@
 import { FC } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Color } from '../../types/color.type'
 import { motion } from 'framer-motion'
+
+import { Color } from '../../types/color.type'
 
 import { useThemeContext } from '../../context'
 
-import { Box, Container, Typography, Button, Stack, Grid } from '@mui/material'
+import {
+  Box,
+  Container,
+  Typography,
+  Button,
+  Stack,
+  Grid,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material'
 
 type Buttons = {
   text: string
@@ -41,6 +51,9 @@ const buttonVariant = {
 
 const Hero: FC = () => {
   const { state, textColor } = useThemeContext()
+
+  const theme = useTheme()
+  const matches_600_up = useMediaQuery(theme.breakpoints.up('sm'))
 
   const buttons: Buttons = [
     {
@@ -86,12 +99,9 @@ const Hero: FC = () => {
               sx={{
                 fontSize: 'clamp(2.5rem, 4vw, 2.8rem)',
                 fontWeight: 500,
-                maxWidth: 300,
                 margin: '0 auto',
-                '@media screen and (min-width: 37.5em)': {
-                  textAlign: 'left',
-                  maxWidth: 400,
-                },
+                maxWidth: matches_600_up ? 400 : 300,
+                textAlign: matches_600_up ? 'left' : 'center',
               }}
               variant="h1"
               align="center"
