@@ -1,4 +1,5 @@
 import type { AppProps } from 'next/app'
+import Head from 'next/head'
 
 import { ThemeContextProvider } from '../context/ThemeContext'
 import { PostsContextProvider } from '../context/PostsContext'
@@ -10,14 +11,19 @@ import { Layout } from '../components'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ThemeContextProvider>
-      <PostsContextProvider>
-        <Layout>
-          <CssBaseline />
-          <Component {...pageProps} />
-        </Layout>
-      </PostsContextProvider>
-    </ThemeContextProvider>
+    <>
+      <Head>
+        <link rel="shortcut icon" href="/images/favicon.png" />
+      </Head>
+      <ThemeContextProvider>
+        <PostsContextProvider>
+          <Layout>
+            <CssBaseline />
+            <Component {...pageProps} />
+          </Layout>
+        </PostsContextProvider>
+      </ThemeContextProvider>
+    </>
   )
 }
 
