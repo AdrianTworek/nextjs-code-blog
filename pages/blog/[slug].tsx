@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import {
   GetStaticPaths,
   GetStaticProps,
@@ -11,17 +12,27 @@ import matter from 'gray-matter'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
 
+import hljs from 'highlight.js'
+import 'highlight.js/styles/vs2015.css'
+
 import { Box } from '@mui/material'
 
-import { BlogPostHeader } from '../../components'
+import { BlogPostHeader, PostImage, TOC, TOCItem } from '../../components'
 
 const components = {
   BlogPostHeader,
+  PostImage,
+  TOC,
+  TOCItem,
 }
 
 const PostPage: NextPage = ({
   source,
 }: InferGetStaticPropsType<GetStaticProps>) => {
+  useEffect(() => {
+    hljs.highlightAll()
+  })
+
   return (
     <Box sx={{ maxWidth: 800, margin: '2rem auto 0', padding: '2rem' }}>
       <MDXRemote {...source} components={components} />
