@@ -1,3 +1,12 @@
+:root {
+  --primary-clr: #09d3ad;
+  --primary-clr-light: #3adbbd;
+  --primary-clr-dark: #069379;
+
+  --secondary-clr-light: #f73378;
+  --secondary-clr-dark: #ab003c;
+}
+
 html,
 body {
   min-height: 100vh;
@@ -26,6 +35,37 @@ a {
 }
 
 ::selection {
-  background: #09d3ad;
+  background: var(--primary-clr);
   color: #fff;
+}
+
+.toc-container {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-clr-light) var(--primary-clr-dark);
+}
+
+.toc-container.toc-container--light {
+  scrollbar-color: var(--secondary-clr-light) var(--secondary-clr-dark);
+}
+
+.toc-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.toc-container::-webkit-scrollbar-track,
+.toc-container::-webkit-scrollbar-thumb {
+  background: var(--primary-clr-dark);
+  border-radius: 10px;
+}
+
+.toc-container::-webkit-scrollbar-thumb {
+  background: var(--primary-clr-light);
+}
+
+.toc-container.toc-container--light::-webkit-scrollbar-track {
+  background: var(--secondary-clr-dark);
+}
+
+.toc-container.toc-container--light::-webkit-scrollbar-thumb {
+  background: var(--secondary-clr-light);
 }

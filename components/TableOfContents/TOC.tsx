@@ -22,7 +22,7 @@ interface Section {
 const MARGIN_TOP = 35
 
 const TOC: FC = () => {
-  const { textColor } = useThemeContext()
+  const { state: themeMode, textColor } = useThemeContext()
   const matches_desktop = useMediaQuery('(min-width: 87.5em)')
 
   const [offsetY, setOffsetY] = useState<number>(0)
@@ -99,14 +99,17 @@ const TOC: FC = () => {
 
   return (
     <Box
+      className={`toc-container ${
+        themeMode === 'dark' ? 'toc-container--dark' : 'toc-container--light'
+      }`}
       sx={{
         display: matches_desktop ? 'block' : 'none',
         position: 'fixed',
         top: 300,
         right: 100,
         width: 300,
-        maxHeight: 330,
-        overflow: 'scroll',
+        maxHeight: 290,
+        overflowX: 'hidden',
       }}
       component={motion.div}
       initial={{ opacity: 0, y: -30 }}
