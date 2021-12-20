@@ -16,6 +16,8 @@ import { MDXRemote } from 'next-mdx-remote'
 import hljs from 'highlight.js'
 import 'highlight.js/styles/vs2015.css'
 
+import { useRecentPostsContext } from '../../context'
+
 import { Box } from '@mui/material'
 
 import { BlogPostHeader, PostImage, TOC, TOCItem } from '../../components'
@@ -28,12 +30,19 @@ const components = {
 }
 
 const PostPage: NextPage = ({
-  metaData: { title },
+  slug,
+  metaData: { title, imageUrl },
   source,
 }: InferGetStaticPropsType<GetStaticProps>) => {
+  const { dispatch } = useRecentPostsContext()
+
   useEffect(() => {
+    // Highlight code syntax if it's there in the post
     hljs.highlightAll()
-  })
+
+    // Add post to the recent viewed posts context
+    dispatch({ type: 'SET_RECENT_POSTS', payload: { slug, title, imageUrl } })
+  }, [title])
 
   return (
     <>
@@ -77,6 +86,6 @@ export const getStaticProps: GetStaticProps<Params> = async ({
   const source = await serialize(content, { scope: metaData })
 
   return {
-    props: { metaData, source },
+    props: { slug, metaData, source },
   }
 }

@@ -3,6 +3,7 @@ import Head from 'next/head'
 
 import { ThemeContextProvider } from '../context/ThemeContext'
 import { PostsContextProvider } from '../context/PostsContext'
+import { RecentPostsContextProvider } from '../context/RecentPostsContext'
 
 import '../styles/globals.css'
 import { CssBaseline } from '@mui/material'
@@ -17,10 +18,12 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <ThemeContextProvider>
         <PostsContextProvider>
-          <Layout>
-            <CssBaseline />
-            <Component {...pageProps} />
-          </Layout>
+          <RecentPostsContextProvider>
+            <Layout>
+              <CssBaseline />
+              <Component {...pageProps} />
+            </Layout>
+          </RecentPostsContextProvider>
         </PostsContextProvider>
       </ThemeContextProvider>
     </>
