@@ -1,11 +1,11 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 
 import { Color } from '../../types/color.type'
 
-import { useThemeContext } from '../../context'
+import { useThemeContext, useRecentPostsContext } from '../../context'
 
 import {
   Box,
@@ -16,7 +16,14 @@ import {
   Grid,
   useMediaQuery,
   useTheme,
+  Badge,
+  Drawer,
 } from '@mui/material'
+
+import EmailIcon from '@mui/icons-material/Email'
+import CloseIcon from '@mui/icons-material/Close'
+
+import DrawerContent from '../Drawer/Drawer'
 
 type Buttons = {
   text: string
@@ -49,8 +56,17 @@ const buttonVariant = {
   show: { opacity: 1, y: 0 },
 }
 
+const badgeVariant = {
+  hidden: { opacity: 0, scale: 1 },
+  show: { opacity: 1, scale: [0.9, 1.3, 0.95, 1.08, 1] },
+}
+
 const Hero: FC = () => {
-  const { state, textColor } = useThemeContext()
+  const { state: recentPosts } = useRecentPostsContext()
+  const { state: themeMode, textColor } = useThemeContext()
+
+  // Drawer
+  const [showDrawer, setShowDrawer] = useState<boolean>(false)
 
   const theme = useTheme()
   const matches_600_up = useMediaQuery(theme.breakpoints.up('sm'))
@@ -68,6 +84,10 @@ const Hero: FC = () => {
     },
   ]
 
+  const handleDrawerClose = () => {
+    setShowDrawer(false)
+  }
+
   return (
     <Box
       sx={{
@@ -80,7 +100,10 @@ const Hero: FC = () => {
       initial="hidden"
       animate="show"
     >
-      <Container maxWidth="lg" sx={{ display: 'grid', placeItems: 'center' }}>
+      <Container
+        maxWidth="lg"
+        sx={{ position: 'relative', display: 'grid', placeItems: 'center' }}
+      >
         <Grid
           container
           justifyContent="center"
@@ -132,7 +155,7 @@ const Hero: FC = () => {
         </Grid>
 
         <Stack
-          sx={{ marginTop: '2rem', maxWidth: 768 }}
+          sx={{ position: 'relative', marginTop: '2rem', maxWidth: 768 }}
           direction="row"
           spacing={2}
         >
@@ -140,7 +163,7 @@ const Hero: FC = () => {
             <Link key={item.text} href={`/${item.href}`} passHref>
               <Button
                 key={item.text}
-                variant={state === 'dark' ? 'outlined' : 'contained'}
+                variant={themeMode === 'dark' ? 'outlined' : 'contained'}
                 color={item.color}
                 size="large"
                 component={motion.button}
@@ -150,6 +173,42 @@ const Hero: FC = () => {
               </Button>
             </Link>
           ))}
+
+          {recentPosts.length > 0 && (
+            <Badge
+              onClick={() => setShowDrawer(true)}
+              sx={{
+                position: 'absolute',
+                left: -30,
+                top: -10,
+                cursor: 'pointer',
+              }}
+              badgeContent={recentPosts.length}
+              color={themeMode === 'dark' ? 'secondary' : 'primary'}
+              component={motion.div}
+              variants={badgeVariant}
+            >
+              <EmailIcon />
+            </Badge>
+          )}
+
+          <Drawer
+            style={{ position: 'relative', padding: '2rem' }}
+            anchor="left"
+            open={showDrawer}
+            onClose={handleDrawerClose}
+          >
+            <CloseIcon
+              onClick={handleDrawerClose}
+              sx={{
+                position: 'absolute',
+                top: 10,
+                right: 10,
+                cursor: 'pointer',
+              }}
+            />
+            <DrawerContent />
+          </Drawer>
         </Stack>
       </Container>
     </Box>
