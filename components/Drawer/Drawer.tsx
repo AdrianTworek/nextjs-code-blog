@@ -20,7 +20,7 @@ const DrawerContent: FC = () => {
         align="center"
         gutterBottom
       >
-        Recents posts you read
+        Recent posts you read
       </Typography>
       <Grid
         container
