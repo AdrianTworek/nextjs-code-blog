@@ -192,12 +192,7 @@ const Hero: FC = () => {
             </Badge>
           )}
 
-          <Drawer
-            style={{ position: 'relative', padding: '2rem' }}
-            anchor="left"
-            open={showDrawer}
-            onClose={handleDrawerClose}
-          >
+          <Drawer anchor="left" open={showDrawer} onClose={handleDrawerClose}>
             <CloseIcon
               onClick={handleDrawerClose}
               sx={{

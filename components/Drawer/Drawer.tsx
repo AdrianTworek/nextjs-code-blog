@@ -29,29 +29,28 @@ const DrawerContent: FC = () => {
         spacing={2}
       >
         {recentPosts.map(({ slug, title, imageUrl }: RecentPost) => (
-          <Grid
-            key={title}
-            sx={{ textAlign: 'center', cursor: 'pointer' }}
-            xs={10}
-            item
-            component={motion.div}
-            initial={{ opacity: 0, x: '-50%' }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{
-              type: 'spring',
-              stiffness: 140,
-              duration: 0.3,
-            }}
-          >
-            <Link href={`/blog/${slug}`} passHref>
+          <Link key={slug + title} href={`/blog/${slug}`} passHref>
+            <Grid
+              key={title}
+              sx={{ textAlign: 'center', cursor: 'pointer' }}
+              xs={10}
+              item
+              component={motion.div}
+              initial={{ opacity: 0, x: '-50%' }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{
+                type: 'spring',
+                stiffness: 140,
+                duration: 0.3,
+              }}
+            >
               <Image
                 src={imageUrl}
                 width={70}
                 height={70}
                 alt={`Image of post ${title}`}
               />
-            </Link>
-            <Link href={`/blog/${slug}`} passHref>
+
               <Typography
                 sx={{ marginTop: '0.4rem' }}
                 variant="subtitle2"
@@ -59,8 +58,8 @@ const DrawerContent: FC = () => {
               >
                 {title}
               </Typography>
-            </Link>
-          </Grid>
+            </Grid>
+          </Link>
         ))}
       </Grid>
     </Box>
