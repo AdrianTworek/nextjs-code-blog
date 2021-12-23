@@ -2,7 +2,7 @@ import { FC, ReactNode } from 'react'
 
 import { useThemeContext } from '../../context'
 
-import { Box, Stack, Typography } from '@mui/material'
+import { Box, Stack, Typography, useMediaQuery, useTheme } from '@mui/material'
 
 interface Props {
   topic: string
@@ -11,6 +11,8 @@ interface Props {
 
 const TOCItem: FC<Props> = ({ topic, children }) => {
   const { state } = useThemeContext()
+  const theme = useTheme()
+  const matches_600_down = useMediaQuery(theme.breakpoints.down('sm'))
 
   return (
     <Box id={topic} className="section-element" component="section">
@@ -31,9 +33,9 @@ const TOCItem: FC<Props> = ({ topic, children }) => {
       <Box
         sx={{
           fontWeight: 300,
-          fontSize: '1.3rem',
+          fontSize: matches_600_down ? '1.1rem' : '1.3rem',
           lineHeight: '1.9',
-          textAlign: 'justify',
+          textAlign: matches_600_down ? 'justify' : 'left',
         }}
       >
         {children}
