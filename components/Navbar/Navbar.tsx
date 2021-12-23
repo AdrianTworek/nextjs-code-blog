@@ -60,17 +60,21 @@ const Navbar: FC = () => {
   const matches_600_up = useMediaQuery(theme.breakpoints.up('sm'))
   const matches_tablet = useMediaQuery('(min-width: 48em)')
 
+  // Set initial theme mode (getTheme takes information from localStorage)
   useEffect(() => {
     const theme = getTheme()
 
-    if (theme) {
-      if (theme === 'light') {
-        dispatchTheme({ type: 'TOGGLE_LIGHT_MODE' })
-      } else {
-        dispatchTheme({ type: 'TOGGLE_DARK_MODE' })
-      }
-    }
+    theme === 'light'
+      ? dispatchTheme({ type: 'TOGGLE_LIGHT_MODE' })
+      : dispatchTheme({ type: 'TOGGLE_DARK_MODE' })
   }, [])
+
+  // Change ::selection colors in css
+  useEffect(() => {
+    themeState === 'light'
+      ? document.body.classList.add('light')
+      : document.body.classList.remove('light')
+  }, [themeState])
 
   // Reset filteredPosts state if there is nothing in input field
   useEffect(() => {
