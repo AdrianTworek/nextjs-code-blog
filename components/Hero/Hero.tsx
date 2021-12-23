@@ -18,6 +18,7 @@ import {
   useTheme,
   Badge,
   Drawer,
+  Tooltip,
 } from '@mui/material'
 
 import EmailIcon from '@mui/icons-material/Email'
@@ -175,21 +176,27 @@ const Hero: FC = () => {
           ))}
 
           {recentPosts.length > 0 && (
-            <Badge
-              onClick={() => setShowDrawer(true)}
-              sx={{
-                position: 'absolute',
-                left: -30,
-                top: -10,
-                cursor: 'pointer',
-              }}
-              badgeContent={recentPosts.length}
-              color={themeMode === 'dark' ? 'secondary' : 'primary'}
-              component={motion.div}
-              variants={badgeVariant}
+            <Tooltip
+              title="See what you were reading"
+              placement="top"
+              leaveTouchDelay={3500}
             >
-              <EmailIcon />
-            </Badge>
+              <Badge
+                onClick={() => setShowDrawer(true)}
+                sx={{
+                  position: 'absolute',
+                  left: -30,
+                  top: -10,
+                  cursor: 'pointer',
+                }}
+                badgeContent={recentPosts.length}
+                color={themeMode === 'dark' ? 'secondary' : 'primary'}
+                component={motion.div}
+                variants={badgeVariant}
+              >
+                <EmailIcon />
+              </Badge>
+            </Tooltip>
           )}
 
           <Drawer anchor="left" open={showDrawer} onClose={handleDrawerClose}>

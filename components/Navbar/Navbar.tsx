@@ -28,6 +28,7 @@ import {
   InputAdornment,
   Grid,
   useMediaQuery,
+  Tooltip,
 } from '@mui/material'
 
 import SearchIcon from '@mui/icons-material/Search'
@@ -46,6 +47,7 @@ const Navbar: FC = () => {
 
   const [filteredPosts, setFilteredPosts] = useState<Post[]>([])
   const [searchValue, setSearchValue] = useState<string>('')
+  const [showTooltip, setShowTooltip] = useState<boolean>(false)
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null)
   const [anchorMobileMenu, setAnchorMobileMenu] = useState<null | HTMLElement>(
     null
@@ -108,6 +110,18 @@ const Navbar: FC = () => {
     } else {
       dispatchTheme({ type: 'TOGGLE_DARK_MODE' })
     }
+  }
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const input = e.target.value
+
+    // Hide tooltip when user has already typed something
+    if (input.length > 0) {
+      setShowTooltip(false)
+    }
+
+    setSearchValue(input)
+    searchBlogs(input.toLowerCase())
   }
 
   const searchBlogs = (input: string) => {
@@ -185,38 +199,46 @@ const Navbar: FC = () => {
             {/* Show filtering form if the user has already visited /blog 
             and data is in the PostsContext state */}
             {posts.length > 0 && router.pathname !== '/blog' && (
-              <Box
-                sx={{
-                  width: matches_tablet ? 200 : 120,
-                  marginLeft: '1rem',
-                  marginRight: matches_600_up ? '1.5rem' : 0,
-                }}
-                component={motion.div}
-                initial={{ x: -15, scale: 1, opacity: 0 }}
-                animate={{ x: 0, scale: [1, 1.1, 0.9, 1], opacity: 1 }}
+              <Tooltip
+                title="With the aid of global state management you can search for blog posts anywhere!"
+                placement="bottom"
+                leaveTouchDelay={5000}
+                open={showTooltip}
+                onOpen={() => setShowTooltip(true)}
+                onClose={() => setShowTooltip(false)}
               >
-                <FormControl variant="standard" color={textColor}>
-                  <InputLabel htmlFor="blog-search-input">
-                    Search blogs
-                  </InputLabel>
-                  <Input
-                    id="blog-search-input"
-                    value={searchValue}
-                    onChange={(e) => {
-                      const input = e.target.value
-                      setSearchValue(input)
-                      searchBlogs(input.toLowerCase())
-                    }}
-                    startAdornment={
-                      <InputAdornment position="start">
-                        <InputLabel htmlFor="blog-search-input">
-                          <SearchIcon color={textColor} />
-                        </InputLabel>
-                      </InputAdornment>
-                    }
-                  ></Input>
-                </FormControl>
-              </Box>
+                <Box
+                  sx={{
+                    width: matches_tablet ? 200 : 120,
+                    marginLeft: '1rem',
+                    marginRight: matches_600_up ? '1.5rem' : 0,
+                  }}
+                  component={motion.div}
+                  initial={{ x: -15, scale: 1, opacity: 0 }}
+                  animate={{ x: 0, scale: [1, 1.1, 0.9, 1], opacity: 1 }}
+                >
+                  <FormControl variant="standard" color={textColor}>
+                    <InputLabel htmlFor="blog-search-input">
+                      Search blogs
+                    </InputLabel>
+                    <Input
+                      id="blog-search-input"
+                      autoComplete="off"
+                      value={searchValue}
+                      onChange={handleInputChange}
+                      onFocus={() => setShowTooltip(true)}
+                      onBlur={() => setShowTooltip(false)}
+                      startAdornment={
+                        <InputAdornment position="start">
+                          <InputLabel htmlFor="blog-search-input">
+                            <SearchIcon color={textColor} />
+                          </InputLabel>
+                        </InputAdornment>
+                      }
+                    ></Input>
+                  </FormControl>
+                </Box>
+              </Tooltip>
             )}
 
             <Box
