@@ -3,6 +3,8 @@ import Image from 'next/image'
 
 import { Grid, Typography } from '@mui/material'
 
+import { HomeButton } from '../../helpers'
+
 interface Props {
   title: string
   imageUrl: string
@@ -20,6 +22,10 @@ const BlogPostHeader: FC<Props> = ({
 }) => {
   return (
     <Grid container spacing={1}>
+      <Grid item sx={{ mb: 5 }} xs={12}>
+        <HomeButton text="Home" variant="contained" color="warning" />
+      </Grid>
+
       <Grid item xs={12}>
         <Typography variant="h4" gutterBottom>
           {title}

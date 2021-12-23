@@ -10,9 +10,10 @@ import { Post } from '../../types/post.interface'
 
 import { usePostsContext } from '../../context'
 
-import { Box } from '@mui/material'
+import { Box, Container } from '@mui/material'
 
 import { PostsContainer, PostsFiltering } from '../../components'
+import { HomeButton } from '../../helpers'
 
 const Blog: NextPage = ({
   posts,
@@ -29,7 +30,14 @@ const Blog: NextPage = ({
         title="Code Blog | Blog posts"
         description="Page with all posts on Code Blog"
       />
-      <Box sx={{ overflow: 'hidden' }}>
+      <Box
+        sx={{
+          overflow: 'hidden',
+        }}
+      >
+        <Container maxWidth="lg" sx={{ mt: 3 }}>
+          <HomeButton text="Home Page" variant="outlined" color="info" icon />
+        </Container>
         <PostsFiltering posts={posts} />
         <PostsContainer />
       </Box>
