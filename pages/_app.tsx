@@ -15,6 +15,10 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <link rel="shortcut icon" href="/images/favicon.png" />
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.14.0/devicon.min.css"
+        ></link>
       </Head>
       <ThemeContextProvider>
         <PostsContextProvider>
