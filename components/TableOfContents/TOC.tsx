@@ -99,8 +99,10 @@ const TOC: FC = () => {
 
   return (
     <Box
-      className={`toc-container ${
-        themeMode === 'dark' ? 'toc-container--dark' : 'toc-container--light'
+      className={`custom-scrollbar ${
+        themeMode === 'dark'
+          ? 'custom-scrollbar--dark'
+          : 'custom-scrollbar--light'
       }`}
       sx={{
         display: matches_desktop ? 'block' : 'none',

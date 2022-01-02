@@ -105,6 +105,11 @@ const LearnNavigation: FC<Props> = ({ menu, topic, slug, metaData }) => {
     <>
       {showMobileNavigation && (
         <Box
+          className={`custom-scrollbar ${
+            themeMode === 'dark'
+              ? 'custom-scrollbar--dark'
+              : 'custom-scrollbar--light'
+          }`}
           sx={{
             display: 'flex',
             visibility: showMobileNavigation ? 'visible' : 'hidden',
