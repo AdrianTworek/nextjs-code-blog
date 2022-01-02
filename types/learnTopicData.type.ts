@@ -3,6 +3,8 @@ export type LearnTopicItem = {
   icon: string
 }
 
+export type Topics = 'javascript' | 'react' | 'nodejs'
+
 export type LearnTopics = LearnTopicItem[]
 
 export const learnTopics: LearnTopics = [
