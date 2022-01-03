@@ -10,6 +10,7 @@ import { useThemeContext } from '../../context'
 import {
   Avatar,
   Box,
+  Button,
   Container,
   Grid,
   List,
@@ -109,16 +110,18 @@ const Learn: NextPage = () => {
                   href={`/learn/${technology.toLowerCase()}/introduction`}
                   passHref
                 >
-                  <ListItem>
-                    <ListItemButton>
-                      <ListItemAvatar>
-                        <Avatar sx={{ background: 'transparent' }}>
-                          <i className={icon}></i>
-                        </Avatar>
-                      </ListItemAvatar>
-                      <ListItemText primary={technology} />
-                    </ListItemButton>
-                  </ListItem>
+                  <a>
+                    <ListItem>
+                      <ListItemButton>
+                        <ListItemAvatar>
+                          <Avatar sx={{ background: 'transparent' }}>
+                            <i className={icon}></i>
+                          </Avatar>
+                        </ListItemAvatar>
+                        <ListItemText primary={technology} />
+                      </ListItemButton>
+                    </ListItem>
+                  </a>
                 </Link>
               ))}
             </List>
