@@ -20,11 +20,16 @@ import 'highlight.js/styles/vs2015.css'
 
 import { Box } from '@mui/material'
 
-import { LearnSectionHeader, LearnNavigation } from '../../../components'
+import {
+  LearnSectionHeader,
+  LearnNavigation,
+  LearnSectionContent,
+} from '../../../components'
 
 const components = {
   LearnSectionHeader,
   LearnNavigation,
+  LearnSectionContent,
 }
 
 const LearnDetailPage: NextPage = ({
@@ -43,7 +48,7 @@ const LearnDetailPage: NextPage = ({
   return (
     <>
       <NextSeo
-        title={`Code Blog | ${topic}`}
+        title={`Code Blog | ${topic} - ${metaData.topic}`}
         description={`Detail page of "${topic}" section`}
       />
       <LearnNavigation
