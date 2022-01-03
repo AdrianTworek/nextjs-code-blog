@@ -61,7 +61,12 @@ const PostCard: FC<Props> = ({ post: { slug, metaData } }) => {
         animate="show"
       >
         <motion.div variants={cardContentVariant}>
-          <CardMedia component="img" image={metaData.imageUrl} height={205} />
+          <CardMedia
+            component="img"
+            image={metaData.imageUrl}
+            alt="Image of blog post card"
+            height={205}
+          />
         </motion.div>
 
         <CardContent component={motion.div} variants={cardContentVariant}>
