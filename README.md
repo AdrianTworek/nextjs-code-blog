@@ -11,7 +11,7 @@ Exemplary blog about coding created in Next.js.
 ### Posts filtering
 <img width="1440" alt="Zrzut ekranu 2022-01-3 o 16 59 54" src="https://user-images.githubusercontent.com/62119460/147952139-58935709-ca54-4c0c-9715-1d352fa51e16.png">
 
-### Light mode, detail post page and input in Navigation Bar, used to search for posts from anywhere.
+### Light mode, detail post page and input in Navigation Bar, used to search for posts from anywhere
 <img width="1440" alt="Zrzut ekranu 2022-01-3 o 17 01 41" src="https://user-images.githubusercontent.com/62119460/147952373-5ed8d6b9-bbfe-4594-8c77-4c92d6c31ebb.png">
 
 ### Learn section and mobile-friendly UI
@@ -20,7 +20,7 @@ Exemplary blog about coding created in Next.js.
 ### Learn topic detail page
 <img width="375" alt="Zrzut ekranu 2022-01-3 o 17 04 23" src="https://user-images.githubusercontent.com/62119460/147952617-bd6509f3-2ae1-4ae9-ab56-52153be65d15.png">
 
-### Drawer component available from Home page after reading one of the blog posts.
+### Drawer component available from Home page after reading one of the blog posts
 <img width="1440" alt="Zrzut ekranu 2022-01-3 o 17 10 03" src="https://user-images.githubusercontent.com/62119460/147953214-190f7b76-6596-4d9d-8ce9-1da698ff4442.png">
 
 ### Custom 404 page
