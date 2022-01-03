@@ -1,0 +1,25 @@
+---
+topic: 'Express'
+section: 'NodeJS'
+subSection: 'Intermediate'
+---
+
+<LearnSectionHeader topic={topic} />
+
+<LearnSectionContent>
+  Express is a minimal and flexible Node.js web application framework that
+  provides a robust set of features for web and mobile applications.
+
+Example of simple express app:
+
+</LearnSectionContent>
+
+```javascript
+const express = require('express')
+
+const app = express()
+
+app.get('/', function (req, res) {
+  res.send('Hello, world!')
+})
+```

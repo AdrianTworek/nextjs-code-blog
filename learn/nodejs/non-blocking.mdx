@@ -1,0 +1,36 @@
+---
+topic: 'Non-blocking'
+section: 'NodeJS'
+subSection: 'Intermediate'
+---
+
+<LearnSectionHeader topic={topic} />
+
+<LearnSectionContent>
+  In Node, non-blocking primarily refers to <strong>I/O operations</strong>, and
+  JavaScript that exhibits poor performance due to being CPU intensive rather
+  than waiting on a non-JavaScript operation, such as I/O, isn't typically
+  referred to as blocking.
+
+Async actions do not block the event loop.
+
+Synchronous code:
+
+</LearnSectionContent>
+
+```javascript
+const fs = require('fs')
+const data = fs.readFileSync('/file.txt') // everything is blocked until file is read
+```
+
+<LearnSectionContent>Asynchronous code:</LearnSectionContent>
+
+```javascript
+const fs = require('fs')
+
+fs.readFile('/file.txt', (error, data) => {
+  if (error) throw error
+
+  console.log(data)
+})
+```

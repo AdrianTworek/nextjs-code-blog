@@ -1,0 +1,27 @@
+---
+topic: 'Events'
+section: 'NodeJS'
+subSection: 'Basics'
+---
+
+<LearnSectionHeader topic={topic} />
+
+<LearnSectionContent>
+Much of the Node.js core API is built around an idiomatic asynchronous event-driven architecture in which certain kinds of objects (called "emitters") emit named events that cause Function objects ("listeners") to be called.
+
+Example:
+
+</LearnSectionContent>
+
+```javascript
+const EventEmitter = require('events')
+
+class MyEmitter extends EventEmitter {}
+
+const myEmitter = new MyEmitter()
+myEmitter.on('event', () => {
+  console.log('an event occurred!')
+})
+
+myEmitter.emit('event')
+```
