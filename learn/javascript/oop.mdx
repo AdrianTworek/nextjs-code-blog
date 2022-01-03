@@ -1,0 +1,32 @@
+---
+topic: 'Object-Oriented Programming'
+section: 'JavaScript'
+subSection: 'Intermediate'
+---
+
+<LearnSectionHeader topic={topic} />
+
+Example of OOP code:
+
+```javascript
+class Rectangle {
+  constructor(width, height) {
+    this.width = width
+    this.height = height
+  }
+
+  // Getter
+  get area() {
+    return this.calculateArea()
+  }
+
+  // Method
+  calculateArea() {
+    return this.width * this.height
+  }
+}
+
+const square = new Rectangle(4, 4)
+
+console.log(square.area) // 16
+```

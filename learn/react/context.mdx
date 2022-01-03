@@ -1,0 +1,172 @@
+---
+topic: 'Context API'
+section: 'React'
+subSection: 'Intermediate'
+---
+
+<LearnSectionHeader topic={topic} />
+
+<LearnSectionContent>
+  Context API is built-in feature of React that provides similar functionalities
+  like Redux.
+
+Example of creating context for posts in TypeScript:
+
+</LearnSectionContent>
+
+```typescript
+import {
+  createContext,
+  ReactNode,
+  Dispatch,
+  useReducer,
+  useContext,
+} from 'react'
+
+import { Post } from '../types/post.interface'
+
+type AppState = typeof initialState
+type Action = { type: 'SET_POSTS'; payload: Post[] }
+
+interface PostsContextProps {
+  children: ReactNode | ReactNode[]
+}
+
+const initialState: Post[] = []
+
+const reducer = (state: AppState, { type, payload }: Action) => {
+  switch (type) {
+    case 'SET_POSTS':
+      return payload
+    default:
+      return state
+  }
+}
+
+const PostsContext = createContext<{
+  state: AppState
+  dispatch: Dispatch<Action>
+}>({ state: initialState, dispatch: () => {} })
+
+export const PostsContextProvider = ({ children }: PostsContextProps) => {
+  const [state, dispatch] = useReducer(reducer, initialState)
+
+  return (
+    <PostsContext.Provider value={{ state, dispatch }}>
+      {children}
+    </PostsContext.Provider>
+  )
+}
+
+const usePostsContext = () => useContext(PostsContext)
+
+export default usePostsContext
+```
+
+<LearnSectionContent>
+
+Wrapping app components with created <strong>providers</strong>:
+
+</LearnSectionContent>
+
+```typescript
+import type { AppProps } from 'next/app'
+import Head from 'next/head'
+
+import { ThemeContextProvider } from '../context/ThemeContext'
+import { PostsContextProvider } from '../context/PostsContext'
+import { RecentPostsContextProvider } from '../context/RecentPostsContext'
+
+import '../styles/globals.css'
+import { CssBaseline } from '@mui/material'
+
+import { Layout } from '../components'
+
+function MyApp({ Component, pageProps }: AppProps) {
+  return (
+    <>
+      <Head>
+        <link rel="shortcut icon" href="/images/favicon.png" />
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.14.0/devicon.min.css"
+        ></link>
+      </Head>
+      <ThemeContextProvider>
+        <PostsContextProvider>
+          <RecentPostsContextProvider>
+            <Layout>
+              <CssBaseline />
+              <Component {...pageProps} />
+            </Layout>
+          </RecentPostsContextProvider>
+        </PostsContextProvider>
+      </ThemeContextProvider>
+    </>
+  )
+}
+
+export default MyApp
+```
+
+<LearnSectionContent>
+Consuming created context to set <strong>posts</strong> in Next.js:
+
+</LearnSectionContent>
+
+```typescript
+const Blog: NextPage = ({
+  posts,
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const { dispatch } = usePostsContext()
+
+  useEffect(() => {
+    dispatch({ type: 'SET_POSTS', payload: posts })
+  }, [])
+
+  return (
+    <>
+      <NextSeo
+        title="Code Blog | Blog posts"
+        description="Page with all posts on Code Blog"
+      />
+      <Box
+        sx={{
+          overflow: 'hidden',
+        }}
+      >
+        <Container maxWidth="lg" sx={{ mt: 3 }}>
+          <HomeButton text="Home Page" variant="outlined" color="info" icon />
+        </Container>
+        <PostsFiltering posts={posts} />
+        <PostsContainer />
+      </Box>
+    </>
+  )
+}
+
+export default Blog
+
+export const getStaticProps: GetStaticProps = async () => {
+  const files = fs.readdirSync(path.join('posts'))
+
+  const posts: Post[] = files.map((fileName: string) => {
+    const slug = fileName.replace('.mdx', '')
+    const post = fs.readFileSync(path.join('posts', fileName), 'utf-8')
+
+    const { data: metaData } = matter(post)
+
+    return { slug, metaData } as Post
+  })
+
+  return {
+    props: {
+      posts: posts.sort(
+        (a: any, b: any) =>
+          new Date(b.metaData.dateString).valueOf() -
+          new Date(a.metaData.dateString).valueOf()
+      ),
+    },
+  }
+}
+```

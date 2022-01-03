@@ -1,0 +1,21 @@
+---
+topic: 'React DOM'
+section: 'React'
+subSection: 'Basics'
+---
+
+<LearnSectionHeader topic={topic} />
+
+<LearnSectionContent>
+React DOM provides specific methods for the DOM that can be used within our application.
+
+The most common method is <strong>render</strong>:
+
+</LearnSectionContent>
+
+```javascript
+import React from 'react'
+import ReactDOM from 'react-dom'
+
+ReactDOM.render(<h1>Hello World!</h1>, document.getElementById('root'))
+```

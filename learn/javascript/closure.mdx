@@ -1,0 +1,27 @@
+---
+topic: 'Closure'
+section: 'JavaScript'
+subSection: 'Advanced'
+---
+
+<LearnSectionHeader topic={topic} />
+
+<LearnSectionContent>
+Closures give you access to the scope of outer function from the inner function.
+
+Example:
+
+</LearnSectionContent>
+
+```javascript
+function func() {
+  let name = 'Mozilla' // variable name created locally by func function
+  function displayName() {
+    // closure
+    alert(name) // using variable declared in the outer function func
+  }
+  displayName()
+}
+
+func()
+```

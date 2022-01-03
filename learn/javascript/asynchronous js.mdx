@@ -1,0 +1,19 @@
+---
+topic: 'Async JS'
+section: 'JavaScript'
+subSection: 'Intermediate'
+---
+
+<LearnSectionHeader topic={topic} />
+
+<LearnSectionContent>
+  Modern way of fetching data asynchronously:
+</LearnSectionContent>
+
+```javascript
+const getData = (url) => {
+  const res = await fetch(url)
+  const data = await res.json()
+  console.log(data)
+}
+```

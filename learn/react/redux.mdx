@@ -1,0 +1,37 @@
+---
+topic: 'Redux - global state management'
+section: 'React'
+subSection: 'Intermediate'
+---
+
+<LearnSectionHeader topic={topic} />
+
+<LearnSectionContent>
+  Redux is a library for centralizing state in applications. It prevents from
+  excessive prop drilling, because every component wrapped in{' '}
+  <strong>store</strong> object can access values of the current state.
+
+Example:
+
+</LearnSectionContent>
+
+```javascript
+import React from 'react'
+import { useSelector } from 'react-redux'
+import TodoListItem from './TodoListItem'
+
+const selectTodos = (state) => state.todos
+
+const TodoList = () => {
+  const todos = useSelector(selectTodos)
+
+  // since `todos` is an array, we can loop over it
+  const renderedListItems = todos.map((todo) => {
+    return <TodoListItem key={todo.id} todo={todo} />
+  })
+
+  return <ul className="todo-list">{renderedListItems}</ul>
+}
+
+export default TodoList
+```
