@@ -11,9 +11,9 @@ subSection: 'Intermediate'
 </LearnSectionContent>
 
 ```javascript
-const getData = (url) => {
-  const res = await fetch(url)
-  const data = await res.json()
+const getData = async (url) => {
+  const response = await fetch(url)
+  const data = await response.json()
   console.log(data)
 }
 ```
