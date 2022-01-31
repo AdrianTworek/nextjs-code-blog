@@ -324,6 +324,7 @@ const Navbar: FC = () => {
           sx={{
             padding: '1rem',
             background: 'rgba(14, 14, 14, 0.5)',
+            zIndex: 100,
           }}
           component={motion.div}
           initial={{ opacity: 0 }}

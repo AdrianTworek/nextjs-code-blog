@@ -122,6 +122,7 @@ const LearnNavigation: FC<Props> = ({ menu, topic, slug, metaData }) => {
             background: theme.palette.background.paper,
             overflowY: 'scroll',
             overflowX: 'hidden',
+            zIndex: 999,
           }}
           component={motion.div}
           initial={{ opacity: 0, x: '-100%' }}
